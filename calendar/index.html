@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Cookout Calendar</title>
+<meta name="description" content="Announcements and this month's events for The Cookout real estate investing community.">
+<link rel="icon" href="/cookout-logo.jpeg">
+<style>
+  :root{
+    --gold:#E9A93C; --gold-deep:#D9912A; --gold-soft:#F3D08A;
+    --brown:#3A2114; --brown-deep:#2A170C; --cream:#FBF3E2;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--cream);color:var(--brown);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:17px;line-height:1.5}
+  .wrap{max-width:860px;margin:0 auto;padding:16px}
+  a{color:var(--gold-deep)}
+  h2{font-size:1.5rem;margin:32px 0 12px;border-bottom:3px solid var(--gold);padding-bottom:6px}
+  /* Header */
+  header{text-align:center;padding:24px 16px 8px}
+  header img{width:110px;height:110px;border-radius:14px;display:block;margin:0 auto 12px}
+  header h1{font-size:2rem;color:var(--brown-deep)}
+  header p{color:var(--gold-deep);font-weight:600;margin-top:4px}
+  /* Announcements */
+  .card{background:#fff;border:1px solid var(--gold-soft);border-left:6px solid var(--gold);
+    border-radius:10px;padding:16px;margin-bottom:12px;box-shadow:0 1px 3px rgba(58,33,20,.08)}
+  .card h3{font-size:1.15rem;color:var(--brown-deep)}
+  .card .posted{font-size:.8rem;color:var(--gold-deep);font-weight:600;margin:2px 0 8px}
+  .btn{display:inline-block;background:var(--gold);color:var(--brown-deep);font-weight:700;
+    text-decoration:none;padding:10px 18px;border-radius:8px;margin-top:10px;border:none;
+    font-size:1rem;cursor:pointer}
+  .btn:hover{background:var(--gold-deep)}
+  .btn.ghost{background:transparent;border:2px solid var(--gold);color:var(--brown)}
+  /* Toggle + month nav */
+  .cal-controls{display:flex;align-items:center;justify-content:space-between;gap:8px;
+    flex-wrap:wrap;margin-bottom:14px}
+  .month-nav{display:flex;align-items:center;gap:8px}
+  .month-nav button{background:var(--gold-soft);border:none;border-radius:8px;width:38px;height:38px;
+    font-size:1.2rem;cursor:pointer;color:var(--brown-deep)}
+  .month-nav strong{font-size:1.1rem;min-width:150px;text-align:center}
+  .view-toggle button{background:transparent;border:2px solid var(--gold);color:var(--brown);
+    padding:7px 14px;border-radius:8px;font-weight:700;cursor:pointer;font-size:.9rem}
+  .view-toggle button.active{background:var(--gold);color:var(--brown-deep)}
+  /* Category tags */
+  .tag{display:inline-block;font-size:.7rem;font-weight:700;padding:2px 8px;border-radius:10px;
+    background:var(--gold-soft);color:var(--brown-deep);vertical-align:middle}
+  .tag.community{background:var(--gold);color:var(--brown-deep)}
+  .tag.power{background:var(--brown);color:var(--cream)}
+  .tag.orientation{background:var(--gold-deep);color:#fff}
+  .tag.lane{background:#fff;border:1.5px solid var(--gold-deep);color:var(--gold-deep)}
+  .tag.member{background:var(--brown-deep);color:var(--gold-soft)}
+  /* List view */
+  .day-group{margin-bottom:18px}
+  .day-group h4{font-size:1rem;color:var(--brown-deep);background:var(--gold-soft);
+    padding:6px 12px;border-radius:8px;margin-bottom:8px}
+  .event-row{background:#fff;border:1px solid var(--gold-soft);border-radius:10px;
+    padding:12px 14px;margin-bottom:8px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .event-row .time{font-weight:700;min-width:150px;font-size:.92rem}
+  .event-row .title{flex:1;min-width:180px}
+  .event-row .btn{margin-top:0;padding:8px 14px;font-size:.9rem}
+  /* Grid view */
+  table.grid{width:100%;table-layout:fixed;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden}
+  .grid th{background:var(--brown);color:var(--cream);padding:8px 4px;font-size:.8rem}
+  .grid td{border:1px solid var(--gold-soft);vertical-align:top;height:86px;width:14.28%;
+    padding:4px;font-size:.75rem;cursor:pointer}
+  .grid td .num{font-weight:700;font-size:.85rem}
+  .grid td.today .num{background:var(--gold);border-radius:50%;padding:2px 7px;color:var(--brown-deep)}
+  .grid td.other{background:var(--cream);color:#a08a6d;cursor:default}
+  .grid td.selected{outline:3px solid var(--gold-deep);outline-offset:-3px}
+  .grid .ev{display:block;background:var(--gold-soft);border-radius:4px;padding:1px 4px;
+    margin-top:2px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+  #dayPanel{margin-top:12px}
+  /* Fallback + misc */
+  #calFallback iframe{width:100%;height:600px;border:1px solid var(--gold-soft);border-radius:10px}
+  .note{background:var(--gold-soft);border-radius:10px;padding:12px 16px;margin-top:12px;font-weight:600}
+  .add-btns{display:flex;gap:10px;flex-wrap:wrap}
+  .muted{color:#7a6248;font-size:.95rem}
+  footer{text-align:center;padding:36px 16px 28px;color:var(--brown-deep)}
+  footer .eat{color:var(--gold-deep);font-weight:700;margin-top:4px}
+  .loading{padding:20px;text-align:center;color:#7a6248}
+  @media(min-width:768px){header h1{font-size:2.4rem}.grid td{height:100px;font-size:.8rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <img src="/cookout-logo.jpeg" alt="The Cookout logo">
+    <h1>The Cookout Calendar</h1>
+    <p>If it's making money, bring it to The Cookout.</p>
+  </header>
+
+  <section id="announcements">
+    <h2>Announcements</h2>
+    <div id="annList" class="loading">Loading announcements...</div>
+  </section>
+
+  <section id="events">
+    <h2>This Month's Events</h2>
+    <div id="calApp" hidden>
+      <div class="cal-controls">
+        <div class="month-nav">
+          <button id="prevBtn" aria-label="Previous month">&#8249;</button>
+          <strong id="monthLabel"></strong>
+          <button id="nextBtn" aria-label="Next month">&#8250;</button>
+        </div>
+        <div class="view-toggle">
+          <button id="listBtn">List</button>
+          <button id="gridBtn">Month grid</button>
+        </div>
+      </div>
+      <div id="listView"></div>
+      <div id="gridView" hidden></div>
+      <div id="dayPanel"></div>
+    </div>
+    <div id="calLoading" class="loading">Loading events...</div>
+    <div id="calFallback" hidden>
+      <p class="muted" style="margin-bottom:10px">Here is the live calendar:</p>
+      <iframe title="The Cookout Google Calendar" src="https://calendar.google.com/calendar/embed?src=c_ce38dbb640663bd2f91dd8399c097f2dbc25387aad2fc454fc6029e1a44e63cd%40group.calendar.google.com&ctz=America/New_York"></iframe>
+    </div>
+  </section>
+
+  <section id="subscribe">
+    <h2>Add This Calendar</h2>
+    <div class="add-btns">
+      <a class="btn" href="https://calendar.google.com/calendar/u/0?cid=Y19jZTM4ZGJiNjQwNjYzYmQyZjkxZGQ4Mzk5YzA5N2YyZGJjMjUzODdhYWQyZmM0NTRmYzYwMjllMWE0NGU2M2NkQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20">Add to Google Calendar</a>
+      <a class="btn ghost" href="https://calendar.google.com/calendar/ical/c_ce38dbb640663bd2f91dd8399c097f2dbc25387aad2fc454fc6029e1a44e63cd%40group.calendar.google.com/public/basic.ics">iCal / Apple / Outlook</a>
+    </div>
+    <p class="note">Every event requires its own Zoom registration. Adding the calendar does not register you. Add it on desktop first.</p>
+  </section>
+
+  <section id="submit-event">
+    <h2>Got an Event?</h2>
+    <p>If you want the community at your event, send the details to leadership. We will post it here and add it to the calendar.</p>
+    <a class="btn" href="mailto:thecrew@thecookout.us?subject=Event%20for%20The%20Cookout%20Calendar">Send Your Event</a>
+  </section>
+
+  <footer>
+    <div>The Cookout &copy; <span id="year"></span></div>
+    <div class="eat">Let's eat.</div>
+  </footer>
+
+</div>
+<script>
+// ================= CONFIG (safe to edit) =================
+const CALENDAR_ID = 'c_ce38dbb640663bd2f91dd8399c097f2dbc25387aad2fc454fc6029e1a44e63cd@group.calendar.google.com';
+const API_KEY = ''; // Google Cloud API key restricted to Calendar API + thecookout.us/*
+const TZ = 'America/New_York';
+// Category detection: first match wins. Keywords are lowercase, checked against the event title.
+const CATEGORIES = [
+  { label:'Community Call', cls:'community',  keywords:['monthly cookout','community call','meetup'] },
+  { label:'Power Hour',     cls:'power',      keywords:['power hour'] },
+  { label:'Orientation',    cls:'orientation',keywords:['orientation'] },
+  { label:'Lane Call',      cls:'lane',       keywords:['lanes','lane call','scale session'] },
+  { label:'Member Event',   cls:'member',     keywords:['library','member training','the lab'] },
+];
+// =========================================================
+
+const $ = id => document.getElementById(id);
+$('year').textContent = new Date().getFullYear();
+const esc = s => s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+// Today's date parts in America/New_York, as {y,m,d}
+function nyToday(){
+  const p = new Intl.DateTimeFormat('en-CA',{timeZone:TZ,year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+  const [y,m,d] = p.split('-').map(Number); return {y,m,d};
+}
+
+// ---------------- Announcements ----------------
+fetch('/announcements.json',{cache:'no-store'}).then(r=>r.json()).then(items=>{
+  const t = nyToday();
+  const todayStr = `${t.y}-${String(t.m).padStart(2,'0')}-${String(t.d).padStart(2,'0')}`;
+  const live = items.filter(a => !a.expires || a.expires >= todayStr)
+                    .sort((a,b) => (b.posted||'').localeCompare(a.posted||''));
+  if(!live.length){ $('annList').innerHTML = '<p class="muted">No announcements right now. Check back soon.</p>'; return; }
+  $('annList').classList.remove('loading');
+  $('annList').innerHTML = live.map(a=>{
+    const body = esc(a.body||'')
+      .replace(/https?:\/\/[^\s<]+/g, u=>`<a href="${u}" target="_blank" rel="noopener">${u}</a>`)
+      .replace(/\n/g,'<br>');
+    const posted = a.posted ? new Date(a.posted+'T12:00:00').toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'}) : '';
+    const btn = a.button && a.button.url ? `<a class="btn" href="${esc(a.button.url)}" target="_blank" rel="noopener">${esc(a.button.label||'Learn more')}</a>` : '';
+    return `<div class="card"><h3>${esc(a.title)}</h3><div class="posted">Posted ${posted}</div><div>${body}</div>${btn}</div>`;
+  }).join('');
+}).catch(()=>{ $('annList').innerHTML = '<p class="muted">Announcements could not load. Refresh to try again.</p>'; });
+
+// ---------------- Events ----------------
+const t0 = nyToday();
+let viewYear = t0.y, viewMonth = t0.m; // 1-based month
+let view = window.innerWidth >= 768 ? 'grid' : 'list';
+let selectedDay = null;
+
+function categoryOf(title){
+  const t = (title||'').toLowerCase();
+  for(const c of CATEGORIES) if(c.keywords.some(k=>t.includes(k))) return c;
+  return { label:'Other', cls:'' };
+}
+function registerLink(ev){
+  const m = ((ev.location||'')+' '+(ev.description||'')).match(/https:\/\/[\w.-]*zoom\.us\/[^\s"'<>\\]+/);
+  return m ? m[0] : null;
+}
+// Date key (YYYY-MM-DD) and display time for an event start/end, in NY time
+function nyParts(gdate){
+  const d = new Date(gdate.dateTime || gdate.date + 'T12:00:00');
+  const key = new Intl.DateTimeFormat('en-CA',{timeZone:TZ,year:'numeric',month:'2-digit',day:'2-digit'}).format(d);
+  const time = gdate.dateTime ? new Intl.DateTimeFormat('en-US',{timeZone:TZ,hour:'numeric',minute:'2-digit'}).format(d) : null;
+  return { key, time };
+}
+
+async function loadMonth(){
+  $('calLoading').hidden = false; $('calApp').hidden = true; selectedDay = null; $('dayPanel').innerHTML = '';
+  const mm = String(viewMonth).padStart(2,'0');
+  const next = viewMonth === 12 ? `${viewYear+1}-01` : `${viewYear}-${String(viewMonth+1).padStart(2,'0')}`;
+  const url = 'https://www.googleapis.com/calendar/v3/calendars/' + encodeURIComponent(CALENDAR_ID) +
+    `/events?key=${API_KEY}&singleEvents=true&orderBy=startTime&maxResults=250` +
+    `&timeMin=${viewYear}-${mm}-01T00:00:00-05:00&timeMax=${next}-01T00:00:00-05:00`;
+  try{
+    if(!API_KEY) throw new Error('no key');
+    const r = await fetch(url);
+    if(!r.ok) throw new Error('api ' + r.status);
+    const data = await r.json();
+    render(data.items || []);
+  }catch(e){
+    $('calLoading').hidden = true;
+    $('calFallback').hidden = false;
+  }
+}
+
+function render(items){
+  const events = items.filter(e=>e.status!=='cancelled').map(e=>{
+    const s = nyParts(e.start), en = nyParts(e.end);
+    return { title:e.summary||'(untitled)', dayKey:s.key, start:s.time, end:en.time,
+             cat:categoryOf(e.summary), link:registerLink(e), desc:e.description||'' };
+  }).filter(e => e.dayKey.startsWith(`${viewYear}-${String(viewMonth).padStart(2,'0')}`));
+  $('monthLabel').textContent = new Date(viewYear, viewMonth-1, 1).toLocaleDateString('en-US',{month:'long',year:'numeric'});
+  renderList(events); renderGrid(events);
+  $('calLoading').hidden = true; $('calApp').hidden = false;
+  setView(view);
+}
+
+function eventRow(e){
+  const time = e.start ? `${e.start} – ${e.end||''}` : 'All day';
+  const btn = e.link ? `<a class="btn" href="${esc(e.link)}" target="_blank" rel="noopener">Register</a>` : '';
+  return `<div class="event-row"><span class="time">${time}</span>` +
+    `<span class="title"><span class="tag ${e.cat.cls}">${e.cat.label}</span> ${esc(e.title)}</span>${btn}</div>`;
+}
+
+function renderList(events){
+  if(!events.length){ $('listView').innerHTML = '<p class="muted">No events on the calendar this month.</p>'; return; }
+  const byDay = {};
+  events.forEach(e => (byDay[e.dayKey] = byDay[e.dayKey] || []).push(e));
+  $('listView').innerHTML = Object.keys(byDay).sort().map(k=>{
+    const label = new Date(k+'T12:00:00').toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
+    return `<div class="day-group"><h4>${label}</h4>${byDay[k].map(eventRow).join('')}</div>`;
+  }).join('');
+}
+
+function renderGrid(events){
+  const byDay = {};
+  events.forEach(e => (byDay[e.dayKey] = byDay[e.dayKey] || []).push(e));
+  const first = new Date(viewYear, viewMonth-1, 1);
+  const daysIn = new Date(viewYear, viewMonth, 0).getDate();
+  const t = nyToday();
+  let cells = '<tr>';
+  for(let i=0;i<first.getDay();i++) cells += '<td class="other"></td>';
+  for(let d=1; d<=daysIn; d++){
+    const key = `${viewYear}-${String(viewMonth).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const isToday = (t.y===viewYear && t.m===viewMonth && t.d===d) ? ' today' : '';
+    const evs = (byDay[key]||[]).map(e=>`<span class="ev">${esc(e.title)}</span>`).join('');
+    cells += `<td class="day${isToday}" data-key="${key}"><span class="num">${d}</span>${evs}</td>`;
+    if((first.getDay()+d) % 7 === 0 && d !== daysIn) cells += '</tr><tr>';
+  }
+  const used = (first.getDay()+daysIn) % 7;
+  if(used) for(let i=used;i<7;i++) cells += '<td class="other"></td>';
+  cells += '</tr>';
+  $('gridView').innerHTML = '<table class="grid"><tr>' +
+    ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(d=>`<th>${d}</th>`).join('') +
+    '</tr>' + cells + '</table>';
+  $('gridView').querySelectorAll('td.day').forEach(td=>{
+    td.onclick = ()=>{
+      $('gridView').querySelectorAll('td.selected').forEach(x=>x.classList.remove('selected'));
+      td.classList.add('selected');
+      const key = td.dataset.key, dayEvents = byDay[key]||[];
+      const label = new Date(key+'T12:00:00').toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
+      $('dayPanel').innerHTML = `<div class="day-group"><h4>${label}</h4>` +
+        (dayEvents.length ? dayEvents.map(eventRow).join('') : '<p class="muted">No events this day.</p>') + '</div>';
+    };
+  });
+}
+
+function setView(v){
+  view = v;
+  $('listView').hidden = v!=='list';
+  $('gridView').hidden = v!=='grid';
+  $('dayPanel').hidden = v!=='grid';
+  $('listBtn').classList.toggle('active', v==='list');
+  $('gridBtn').classList.toggle('active', v==='grid');
+}
+$('listBtn').onclick = ()=>setView('list');
+$('gridBtn').onclick = ()=>setView('grid');
+$('prevBtn').onclick = ()=>{ viewMonth--; if(viewMonth<1){viewMonth=12;viewYear--;} loadMonth(); };
+$('nextBtn').onclick = ()=>{ viewMonth++; if(viewMonth>12){viewMonth=1;viewYear++;} loadMonth(); };
+loadMonth();
+</script>
+</body>
+</html>

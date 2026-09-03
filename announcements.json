@@ -1,0 +1,25 @@
+[
+  {
+    "id": "2026-09-monthly-cookout",
+    "title": "Monthly Cookout Meetup: Thursday, September 3",
+    "posted": "2026-09-01",
+    "expires": "2026-09-04",
+    "body": "First Thursday community call, 7:00 to 8:00 PM ET on Zoom. Registration is required. Register before you join.",
+    "button": { "label": "Register", "url": "https://us06web.zoom.us/meeting/register/JrFt8wV9SY25uB1Z8DCZ3w" }
+  },
+  {
+    "id": "2026-09-calendar-page-live",
+    "title": "This page is your new home base",
+    "posted": "2026-09-01",
+    "expires": "2026-10-01",
+    "body": "Bookmark thecookout.us. Announcements and this month's events live here now. Add the calendar to your phone using the buttons below, and remember: every event still needs its own Zoom registration."
+  },
+  {
+    "id": "example-with-placeholder",
+    "title": "[Example announcement - replace me]",
+    "posted": "2026-08-30",
+    "expires": "2026-09-30",
+    "body": "This is what an announcement with a link looks like. Links in the body work automatically: [PASTE_LINK_HERE]. Delete this entry when the page goes live.",
+    "button": { "label": "[Button label]", "url": "[PASTE_URL_HERE]" }
+  }
+]
