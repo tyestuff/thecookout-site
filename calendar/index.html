@@ -213,9 +213,12 @@ async function loadMonth(){
   $('calLoading').hidden = false; $('calApp').hidden = true; selectedDay = null; $('dayPanel').innerHTML = '';
   const mm = String(viewMonth).padStart(2,'0');
   const next = viewMonth === 12 ? `${viewYear+1}-01` : `${viewYear}-${String(viewMonth+1).padStart(2,'0')}`;
+  // Fetch a padded window (a day each side, UTC); exact month filtering happens
+  // in render() on the New York date key, so EST/EDT never shifts an event out.
+  const pad = d => new Date(d).toISOString();
   const url = 'https://www.googleapis.com/calendar/v3/calendars/' + encodeURIComponent(CALENDAR_ID) +
     `/events?key=${API_KEY}&singleEvents=true&orderBy=startTime&maxResults=250` +
-    `&timeMin=${viewYear}-${mm}-01T00:00:00-05:00&timeMax=${next}-01T00:00:00-05:00`;
+    `&timeMin=${pad(Date.UTC(viewYear, viewMonth-1, 0))}&timeMax=${pad(Date.UTC(viewYear, viewMonth, 2))}`;
   try{
     if(!API_KEY) throw new Error('no key');
     const r = await fetch(url);
