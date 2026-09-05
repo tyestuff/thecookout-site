@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Present to The Cookout</title>
+<meta name="description" content="Apply to present to The Cookout community: your topic, your outline, and what members will walk away with.">
+<link rel="icon" href="/cookout-logo.jpeg">
+<style>
+  :root{
+    --gold:#E9A93C; --gold-deep:#D9912A; --gold-soft:#F3D08A;
+    --brown:#3A2114; --brown-deep:#2A170C; --cream:#FBF3E2;
+    --card:#FFFFFF; --shadow:0 6px 18px rgba(58,33,20,.10); --radius:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--cream);color:var(--brown);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:17px;line-height:1.55}
+  .wrap{max-width:720px;margin:0 auto;padding:0 16px 40px}
+  a{color:var(--gold-deep)}
+  .hero{background:
+    repeating-linear-gradient(90deg, rgba(0,0,0,.22) 0 2px, transparent 2px 110px),
+    linear-gradient(180deg, #33200f 0%, var(--brown-deep) 70%);
+    color:var(--cream);text-align:center;padding:26px 16px 36px}
+  .hero .bar{display:flex;align-items:center;justify-content:space-between;max-width:720px;margin:0 auto 20px}
+  .hero .bar a{color:var(--gold-soft);text-decoration:none;font-weight:700;font-size:.95rem}
+  .hero .bar img{width:48px;height:48px;border-radius:12px}
+  .hero h1{font-size:clamp(1.8rem,6vw,2.6rem);font-weight:800;text-transform:uppercase;letter-spacing:.05em}
+  .hero h1 .accent{color:var(--gold)}
+  .hero p{color:var(--gold-soft);font-weight:600;margin-top:8px;font-size:1rem}
+  form{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);
+    padding:24px;margin-top:28px}
+  fieldset{border:none;margin-bottom:6px}
+  label{display:block;font-weight:700;color:var(--brown-deep);font-size:.92rem;margin:16px 0 6px}
+  label .req{color:var(--gold-deep)}
+  label .hint{font-weight:400;color:#7a6248;font-size:.85rem}
+  input[type=text],input[type=email],input[type=tel],input[type=url],textarea,select{
+    width:100%;border:2px solid var(--gold-soft);border-radius:10px;padding:11px 12px;
+    font:inherit;font-size:.98rem;color:var(--brown);background:#fffdf7}
+  input:focus,textarea:focus,select:focus{outline:none;border-color:var(--gold-deep)}
+  textarea{min-height:96px;resize:vertical}
+  .row{display:grid;gap:12px}
+  @media(min-width:560px){.row.cols-2{grid-template-columns:1fr 1fr}}
+  .radio-row{display:flex;gap:16px;flex-wrap:wrap;margin-top:4px}
+  .radio-row label{display:flex;align-items:center;gap:7px;font-weight:600;margin:0}
+  .btn{display:inline-block;background:var(--gold);color:var(--brown-deep);font-weight:700;
+    padding:13px 26px;border-radius:999px;border:none;font-size:1.02rem;cursor:pointer;margin-top:22px}
+  .btn:hover{background:var(--gold-deep)}
+  .note{background:var(--gold-soft);border-radius:12px;padding:12px 14px;margin-top:16px;
+    font-weight:600;font-size:.88rem}
+  #fallback{display:none;margin-top:18px}
+  #fallback textarea{min-height:180px;font-size:.85rem}
+  #fallback .btn{margin-top:10px;padding:10px 20px;font-size:.9rem}
+  #thanks{display:none;margin-top:18px;background:var(--gold-soft);border-radius:12px;
+    padding:16px;font-weight:700;color:var(--brown-deep)}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="bar">
+    <a href="/calendar/">&#8249; Calendar</a>
+    <img src="/cookout-logo.jpeg" alt="The Cookout logo">
+    <a href="/members/">Members</a>
+  </div>
+  <h1>Present to <span class="accent">The Cookout</span></h1>
+  <p>Got knowledge the community needs? Apply to take the mic.</p>
+</header>
+
+<div class="wrap">
+<form id="appForm">
+  <fieldset>
+    <label>Your name <span class="req">*</span></label>
+    <input type="text" name="Speaker name" required>
+    <div class="row cols-2">
+      <div><label>Email <span class="req">*</span></label><input type="email" name="Email" required></div>
+      <div><label>Phone</label><input type="tel" name="Phone"></div>
+    </div>
+    <label>Business or brand <span class="hint">plus website or social link, for the flyer</span></label>
+    <input type="text" name="Business and links">
+    <label>Short bio <span class="hint">2-3 sentences on who you are and why this topic is yours</span></label>
+    <textarea name="Bio"></textarea>
+    <label>Presentation title <span class="req">*</span></label>
+    <input type="text" name="Presentation title" required>
+    <label>Outline: what the presentation covers <span class="req">*</span> <span class="hint">the general flow, start to finish</span></label>
+    <textarea name="Outline" required></textarea>
+    <label>Objectives <span class="req">*</span> <span class="hint">bullet them - one per line</span></label>
+    <textarea name="Objectives" required placeholder="- ..."></textarea>
+    <label>What will people walk away with? <span class="req">*</span></label>
+    <textarea name="Takeaways" required></textarea>
+    <label>How long do you need?</label>
+    <select name="Length">
+      <option value="">Select...</option>
+      <option>15 minutes</option>
+      <option>30 minutes</option>
+      <option>45 minutes</option>
+      <option>60 minutes</option>
+    </select>
+    <label>Date preferences <span class="req">*</span> <span class="hint">2-3 dates or a range that works for you</span></label>
+    <input type="text" name="Date preferences" required>
+    <label>Speaker photo <span class="req">*</span> <span class="hint">link to the image you want us to use (Google Drive, set to "anyone with the link")</span></label>
+    <input type="url" name="Photo link" required placeholder="https://">
+    <label>Google Drive link to your presentation <span class="hint">so it's ready and available for the event; share as "anyone with the link"</span></label>
+    <input type="url" name="Presentation link" placeholder="https://">
+    <label>Are you offering or selling anything during the presentation?</label>
+    <div class="radio-row">
+      <label><input type="radio" name="Pitching" value="No"> No</label>
+      <label><input type="radio" name="Pitching" value="Yes"> Yes (tell us below)</label>
+    </div>
+    <label>OK to record and post the replay in the member library? <span class="req">*</span></label>
+    <div class="radio-row">
+      <label><input type="radio" name="Replay consent" value="Yes" required> Yes</label>
+      <label><input type="radio" name="Replay consent" value="No"> No</label>
+    </div>
+    <label>Anything else?</label>
+    <textarea name="Notes"></textarea>
+  </fieldset>
+  <button class="btn" type="submit">Send Application</button>
+  <p class="note">Submitting opens an email to thecrew@thecookout.us with your application filled in - just hit send. A copy button appears below in case you'd rather paste it into a chat.</p>
+  <div id="thanks">Got it - your email app should be open. Hit send and leadership will review it.</div>
+  <div id="fallback">
+    <label>Or copy it and send it your way:</label>
+    <textarea id="fbText" readonly></textarea>
+    <button class="btn" type="button" id="copyBtn">Copy</button>
+  </div>
+</form>
+</div>
+
+<script>
+// Phase 2: paste a Google Apps Script web-app URL here and submissions will
+// also save to the leadership Google Sheet + email the whole leadership team.
+const FORM_ENDPOINT = '';
+const TO = 'thecrew@thecookout.us';
+
+const form = document.getElementById('appForm');
+form.addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const fd = new FormData(form);
+  let lines = ['SPEAKER APPLICATION', '====================='];
+  for(const [k,v] of fd.entries()){ if(String(v).trim()) lines.push(`${k}: ${v}`); }
+  const body = lines.join('\n');
+  if(FORM_ENDPOINT){
+    try{
+      await fetch(FORM_ENDPOINT,{method:'POST',mode:'no-cors',
+        headers:{'Content-Type':'text/plain'},body:JSON.stringify(Object.fromEntries(fd))});
+      document.getElementById('thanks').textContent = 'Sent! Leadership has been notified.';
+      document.getElementById('thanks').style.display='block';
+      form.querySelector('.btn[type=submit]').disabled = true;
+      return;
+    }catch(err){/* fall through to mailto */}
+  }
+  const subject = 'Speaker application: ' + (fd.get('Speaker name')||'');
+  location.href = `mailto:${TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  document.getElementById('thanks').style.display='block';
+  document.getElementById('fbText').value = body;
+  document.getElementById('fallback').style.display='block';
+});
+document.getElementById('copyBtn').onclick = ()=>{
+  navigator.clipboard.writeText(document.getElementById('fbText').value);
+  document.getElementById('copyBtn').textContent = 'Copied!';
+};
+</script>
+</body>
+</html>
