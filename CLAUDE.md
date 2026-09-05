@@ -24,6 +24,8 @@ Public announcements + calendar page for The Cookout, a real estate investing co
 
 `expires` and `button` optional. Newest `posted` first. Cards hide when `expires` has passed (America/New_York).
 
+3. **Members:** `members.json` in the repo root feeds the `/members/` directory page (featured members + all member cards) and works like announcements: edit JSON, commit, push. Only `name` is required; cards render only the fields present; `featured: true` adds the member to the Featured Members section. Never invent member names or contact info.
+
 ## Brand
 
 - Colors: Gold `#E9A93C`, Gold deep `#D9912A`, Gold soft `#F3D08A`, Brown `#3A2114`, Brown deep `#2A170C`, Cream `#FBF3E2`.

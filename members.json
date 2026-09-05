@@ -1,0 +1,34 @@
+[
+  {
+    "featured": true,
+    "name": "[Member Name]",
+    "role": "Real Estate Investor",
+    "location": "[City, ST]",
+    "phone": "[PHONE]",
+    "email": "[EMAIL]",
+    "website": "[URL]",
+    "details": "[What they do, what they have, or what they need - in their own words. Example: Buy-and-hold investor focused on co-living SFRs. Has private capital, looking for off-market deals in the DMV.]"
+  },
+  {
+    "featured": true,
+    "name": "[Member Name]",
+    "role": "Business Owner",
+    "location": "[City, ST]",
+    "phone": "[PHONE]",
+    "details": "[Replace me. Every field except name is optional - a card only shows what the member wants to share.]"
+  },
+  {
+    "featured": false,
+    "name": "[Member Name]",
+    "role": "Service Provider",
+    "phone": "[PHONE]",
+    "email": "[EMAIL]",
+    "details": "[Replace me or delete me.]"
+  },
+  {
+    "featured": false,
+    "name": "[Member Name]",
+    "role": "Lender",
+    "details": "[Replace me or delete me.]"
+  }
+]

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Cookout Members</title>
+<meta name="description" content="The Cookout member directory: who they are, what they do, what they have, and what they need.">
+<meta property="og:title" content="The Cookout Members">
+<meta property="og:description" content="The Cookout member directory. Investors, business owners, service providers - and what they bring to the table.">
+<meta property="og:image" content="https://thecookout.us/cookout-logo.jpeg">
+<meta property="og:url" content="https://thecookout.us/members/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/cookout-logo.jpeg">
+<style>
+  :root{
+    --gold:#E9A93C; --gold-deep:#D9912A; --gold-soft:#F3D08A;
+    --brown:#3A2114; --brown-deep:#2A170C; --cream:#FBF3E2;
+    --card:#FFFFFF; --shadow:0 6px 18px rgba(58,33,20,.10); --radius:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--cream);color:var(--brown);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:17px;line-height:1.55}
+  .wrap{max-width:960px;margin:0 auto;padding:0 16px}
+  a{color:var(--gold-deep)}
+  /* ===== Top bar + hero ===== */
+  .hero{background:
+    repeating-linear-gradient(90deg, rgba(0,0,0,.22) 0 2px, transparent 2px 110px),
+    linear-gradient(180deg, #33200f 0%, var(--brown-deep) 70%);
+    color:var(--cream);text-align:center;padding:34px 16px 44px}
+  .hero .bar{display:flex;align-items:center;justify-content:space-between;max-width:960px;margin:0 auto 26px}
+  .hero .bar a{color:var(--gold-soft);text-decoration:none;font-weight:700;font-size:.95rem}
+  .hero .bar img{width:52px;height:52px;border-radius:12px}
+  .hero .the{display:block;color:var(--gold-soft);letter-spacing:.55em;font-size:.85rem;
+    font-weight:700;text-transform:uppercase;margin-bottom:2px}
+  .hero h1{font-size:clamp(2.2rem,8vw,3.4rem);font-weight:800;letter-spacing:.06em;
+    text-transform:uppercase;line-height:1.05}
+  .hero h1 .accent{color:var(--gold)}
+  .hero .tagline{color:var(--gold-soft);font-weight:600;margin-top:12px;font-size:1.02rem}
+  .btn{display:inline-block;background:var(--gold);color:var(--brown-deep);font-weight:700;
+    text-decoration:none;padding:11px 20px;border-radius:999px;border:none;font-size:.95rem;
+    cursor:pointer;transition:background .15s}
+  .btn:hover{background:var(--gold-deep)}
+  /* ===== Sections ===== */
+  section{padding:40px 0 6px}
+  .kicker{color:var(--gold-deep);font-weight:800;text-transform:uppercase;
+    letter-spacing:.25em;font-size:.75rem;display:block;margin-bottom:6px}
+  h2{font-size:1.6rem;color:var(--brown-deep);margin-bottom:18px}
+  /* ===== Member cards ===== */
+  .member-grid{display:grid;gap:14px}
+  @media(min-width:680px){.member-grid{grid-template-columns:1fr 1fr}}
+  @media(min-width:920px){.member-grid.all{grid-template-columns:1fr 1fr 1fr}}
+  .mcard{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);
+    padding:20px;display:flex;flex-direction:column;position:relative}
+  .mcard.featured{border-top:5px solid var(--gold)}
+  .badge{position:absolute;top:14px;right:14px;background:var(--gold);color:var(--brown-deep);
+    font-size:.66rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+    padding:4px 10px;border-radius:999px}
+  .role{display:inline-block;align-self:flex-start;font-size:.7rem;font-weight:800;
+    padding:4px 12px;border-radius:999px;background:var(--brown-deep);color:var(--gold-soft);
+    text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .mcard h3{font-size:1.18rem;color:var(--brown-deep)}
+  .mcard .loc{color:#7a6248;font-size:.9rem;margin-top:2px}
+  .mcard .contact{margin:12px 0 4px;font-size:.93rem}
+  .mcard .contact div{margin-bottom:5px;overflow-wrap:anywhere}
+  .mcard .details{font-size:.95rem;margin-top:8px;flex:1}
+  .muted{color:#7a6248;font-size:.95rem}
+  .loading{padding:20px;text-align:center;color:#7a6248}
+  .cta{background:var(--gold-soft);border-radius:var(--radius);padding:18px 20px;margin:34px 0 0;
+    display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+  .cta strong{color:var(--brown-deep)}
+  footer{background:var(--brown-deep);color:var(--cream);text-align:center;padding:30px 16px;margin-top:48px}
+  footer .eat{color:var(--gold);font-weight:800;margin-top:6px;font-size:1.1rem}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="bar">
+    <a href="/calendar/">&#8249; Calendar</a>
+    <img src="/cookout-logo.jpeg" alt="The Cookout logo">
+    <a href="/calendar/#announcements">Announcements</a>
+  </div>
+  <span class="the">The Cookout</span>
+  <h1>Mem<span class="accent">bers</span></h1>
+  <p class="tagline">Who's at the table, what they do, and what they bring.</p>
+</header>
+
+<div class="wrap">
+
+  <section id="featured-members">
+    <span class="kicker">The Community</span>
+    <h2>Featured Members</h2>
+    <div id="featList" class="member-grid loading">Loading members...</div>
+  </section>
+
+  <section id="all-members">
+    <span class="kicker">The Directory</span>
+    <h2>Members</h2>
+    <div id="memList" class="member-grid all loading">Loading members...</div>
+    <div class="cta">
+      <div><strong>Want your card here?</strong> Send your name, what you do, and whatever contact details you want to share.</div>
+      <a class="btn" href="mailto:thecrew@thecookout.us?subject=Add%20me%20to%20the%20member%20directory">Get Listed</a>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div>The Cookout &copy; <span id="year"></span></div>
+  <div class="eat">Let's eat.</div>
+</footer>
+
+<script>
+const $ = id => document.getElementById(id);
+$('year').textContent = new Date().getFullYear();
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+function memberCard(m, isFeatured){
+  const badge = isFeatured ? '<span class="badge">&#9733; Featured</span>' : '';
+  const role = m.role ? `<span class="role">${esc(m.role)}</span>` : '';
+  const loc = m.location ? `<div class="loc">&#128205; ${esc(m.location)}</div>` : '';
+  let contact = '';
+  if(m.phone)   contact += `<div>&#9742; <a href="tel:${esc(m.phone).replace(/[^+\d]/g,'')}">${esc(m.phone)}</a></div>`;
+  if(m.email)   contact += `<div>&#9993; <a href="mailto:${esc(m.email)}">${esc(m.email)}</a></div>`;
+  if(m.website) contact += `<div>&#127760; <a href="${esc(m.website)}" target="_blank" rel="noopener">${esc(m.website)}</a></div>`;
+  const details = m.details ? `<div class="details">${esc(m.details).replace(/\n/g,'<br>')}</div>` : '';
+  return `<div class="mcard${isFeatured?' featured':''}">${badge}${role}<h3>${esc(m.name||'')}</h3>${loc}` +
+    (contact?`<div class="contact">${contact}</div>`:'') + details + '</div>';
+}
+
+fetch('/members.json',{cache:'no-store'}).then(r=>r.json()).then(items=>{
+  const feat = items.filter(m=>m.featured);
+  const all = items;
+  $('featList').classList.remove('loading');
+  $('memList').classList.remove('loading');
+  $('featList').innerHTML = feat.length ? feat.map(m=>memberCard(m,true)).join('')
+    : '<p class="muted">No featured members yet.</p>';
+  $('memList').innerHTML = all.length ? all.map(m=>memberCard(m,false)).join('')
+    : '<p class="muted">Member cards are coming. Want yours here? Use the button below.</p>';
+}).catch(()=>{
+  $('featList').innerHTML = $('memList').innerHTML = '<p class="muted">Members could not load. Refresh to try again.</p>';
+});
+</script>
+</body>
+</html>

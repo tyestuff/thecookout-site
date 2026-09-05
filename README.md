@@ -35,6 +35,27 @@ cd "/Users/tyesstuff/Documents/Claude/Projects/The Cookout/thecookout-site"
 git add -A && git commit -m "Update announcements" && git push
 ```
 
+## How to update members
+
+The member directory at `/members/` works exactly like announcements: edit `members.json`, commit, push, wait 1 to 2 minutes. Each entry:
+
+```json
+{
+  "featured": true,
+  "name": "Member Name",
+  "role": "Real Estate Investor",
+  "location": "City, ST",
+  "phone": "555-555-5555",
+  "email": "name@example.com",
+  "website": "https://...",
+  "details": "What they do, have, or need - in their words."
+}
+```
+
+- Only `name` is required. A card shows only the fields present - members share what they want.
+- `featured: true` puts the member in the Featured Members section (with a badge) AND in the full list.
+- Never invent member info. Use `[BRACKETED_PLACEHOLDERS]` and ask.
+
 ## How to change event categories
 
 Open `calendar/index.html` and find the `CATEGORIES` array near the top of the `<script>` block. Each category has a label, a CSS class, and a list of lowercase keywords matched against event titles. First match wins; no match shows "Other". Edit keywords there, push.
