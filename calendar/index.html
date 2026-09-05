@@ -16,94 +16,131 @@
   :root{
     --gold:#E9A93C; --gold-deep:#D9912A; --gold-soft:#F3D08A;
     --brown:#3A2114; --brown-deep:#2A170C; --cream:#FBF3E2;
+    --card:#FFFFFF; --shadow:0 6px 18px rgba(58,33,20,.10); --radius:16px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
   body{background:var(--cream);color:var(--brown);
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    font-size:17px;line-height:1.5}
-  .wrap{max-width:860px;margin:0 auto;padding:16px}
+    font-size:17px;line-height:1.55}
+  .wrap{max-width:960px;margin:0 auto;padding:0 16px}
   a{color:var(--gold-deep)}
-  h2{font-size:1.5rem;margin:32px 0 12px;border-bottom:3px solid var(--gold);padding-bottom:6px}
-  /* Header */
-  header{text-align:center;padding:24px 16px 8px}
-  header img{width:110px;height:110px;border-radius:14px;display:block;margin:0 auto 12px}
-  header h1{font-size:2rem;color:var(--brown-deep)}
-  header p{color:var(--gold-deep);font-weight:600;margin-top:4px}
-  /* Announcements */
-  .card{background:#fff;border:1px solid var(--gold-soft);border-left:6px solid var(--gold);
-    border-radius:10px;padding:16px;margin-bottom:12px;box-shadow:0 1px 3px rgba(58,33,20,.08)}
-  .card h3{font-size:1.15rem;color:var(--brown-deep)}
-  .card .posted{font-size:.8rem;color:var(--gold-deep);font-weight:600;margin:2px 0 8px}
+  /* ===== Hero ===== */
+  .hero{background:
+    repeating-linear-gradient(90deg, rgba(0,0,0,.22) 0 2px, transparent 2px 110px),
+    linear-gradient(180deg, #33200f 0%, var(--brown-deep) 70%);
+    color:var(--cream);text-align:center;padding:52px 16px 60px}
+  .hero img{width:96px;height:96px;border-radius:20px;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+  .hero .the{display:block;color:var(--gold-soft);letter-spacing:.55em;font-size:.95rem;
+    font-weight:700;text-transform:uppercase;margin:22px 0 4px}
+  .hero h1{font-size:clamp(2.6rem,9vw,4.4rem);font-weight:800;letter-spacing:.06em;
+    text-transform:uppercase;line-height:1.05}
+  .hero h1 .accent{color:var(--gold)}
+  .hero .tagline{color:var(--gold-soft);font-weight:600;margin:14px auto 30px;font-size:1.05rem}
+  .hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
   .btn{display:inline-block;background:var(--gold);color:var(--brown-deep);font-weight:700;
-    text-decoration:none;padding:10px 18px;border-radius:8px;margin-top:10px;border:none;
-    font-size:1rem;cursor:pointer}
+    text-decoration:none;padding:12px 22px;border-radius:999px;border:none;font-size:1rem;
+    cursor:pointer;transition:background .15s}
   .btn:hover{background:var(--gold-deep)}
-  .btn.ghost{background:transparent;border:2px solid var(--gold);color:var(--brown)}
-  /* Toggle + month nav */
-  .cal-controls{display:flex;align-items:center;justify-content:space-between;gap:8px;
-    flex-wrap:wrap;margin-bottom:14px}
+  .btn.ghost{background:transparent;border:2px solid var(--gold);color:var(--gold)}
+  .btn.ghost:hover{background:rgba(233,169,60,.12)}
+  .btn.small{padding:9px 16px;font-size:.9rem}
+  /* ===== Sections ===== */
+  section{padding:44px 0 8px}
+  .kicker{color:var(--gold-deep);font-weight:800;text-transform:uppercase;
+    letter-spacing:.25em;font-size:.75rem;display:block;margin-bottom:6px}
+  h2{font-size:1.7rem;color:var(--brown-deep);margin-bottom:18px}
+  /* ===== Cards ===== */
+  .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px}
+  .ann-grid{display:grid;gap:14px}
+  @media(min-width:720px){.ann-grid{grid-template-columns:1fr 1fr}}
+  .ann-grid .card{border-top:5px solid var(--gold)}
+  .card h3{font-size:1.12rem;color:var(--brown-deep)}
+  .card .posted{font-size:.78rem;color:var(--gold-deep);font-weight:700;margin:3px 0 10px;
+    text-transform:uppercase;letter-spacing:.06em}
+  .card .btn{margin-top:14px;padding:10px 18px;font-size:.92rem}
+  /* ===== Events ===== */
+  .cal-controls{display:flex;align-items:center;justify-content:space-between;gap:10px;
+    flex-wrap:wrap;margin-bottom:16px}
   .month-nav{display:flex;align-items:center;gap:8px}
-  .month-nav button{background:var(--gold-soft);border:none;border-radius:8px;width:38px;height:38px;
-    font-size:1.2rem;cursor:pointer;color:var(--brown-deep)}
-  .month-nav strong{font-size:1.1rem;min-width:150px;text-align:center}
-  .view-toggle button{background:transparent;border:2px solid var(--gold);color:var(--brown);
-    padding:7px 14px;border-radius:8px;font-weight:700;cursor:pointer;font-size:.9rem}
+  .month-nav button{background:#fff;border:none;box-shadow:var(--shadow);border-radius:12px;
+    width:40px;height:40px;font-size:1.25rem;cursor:pointer;color:var(--brown-deep)}
+  .month-nav strong{font-size:1.12rem;min-width:155px;text-align:center}
+  .view-toggle{background:#fff;border-radius:999px;box-shadow:var(--shadow);padding:4px;display:flex;gap:4px}
+  .view-toggle button{background:transparent;border:none;color:var(--brown);
+    padding:8px 16px;border-radius:999px;font-weight:700;cursor:pointer;font-size:.9rem}
   .view-toggle button.active{background:var(--gold);color:var(--brown-deep)}
-  /* Category tags */
-  .tag{display:inline-block;font-size:.7rem;font-weight:700;padding:2px 8px;border-radius:10px;
-    background:var(--gold-soft);color:var(--brown-deep);vertical-align:middle}
+  .event-card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);
+    padding:14px 16px;margin-bottom:12px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  .date-badge{background:var(--brown-deep);color:var(--cream);border-radius:12px;
+    min-width:62px;text-align:center;padding:8px 6px;line-height:1.1}
+  .date-badge .d{display:block;font-size:1.45rem;font-weight:800;color:var(--gold)}
+  .date-badge .m{display:block;font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+  .event-card .info{flex:1;min-width:190px}
+  .event-card .time{font-weight:700;font-size:.88rem;color:var(--gold-deep)}
+  .event-card .title{font-weight:600;color:var(--brown-deep);margin-top:2px}
+  .tag{display:inline-block;font-size:.68rem;font-weight:800;padding:3px 10px;border-radius:999px;
+    background:var(--gold-soft);color:var(--brown-deep);vertical-align:middle;margin-top:6px;
+    text-transform:uppercase;letter-spacing:.05em}
   .tag.community{background:var(--gold);color:var(--brown-deep)}
   .tag.power{background:var(--brown);color:var(--cream)}
   .tag.orientation{background:var(--gold-deep);color:#fff}
   .tag.lane{background:#fff;border:1.5px solid var(--gold-deep);color:var(--gold-deep)}
   .tag.member{background:var(--brown-deep);color:var(--gold-soft)}
-  /* List view */
-  .day-group{margin-bottom:18px}
-  .day-group h4{font-size:1rem;color:var(--brown-deep);background:var(--gold-soft);
-    padding:6px 12px;border-radius:8px;margin-bottom:8px}
-  .event-row{background:#fff;border:1px solid var(--gold-soft);border-radius:10px;
-    padding:12px 14px;margin-bottom:8px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-  .event-row .time{font-weight:700;min-width:150px;font-size:.92rem}
-  .event-row .title{flex:1;min-width:180px}
-  .event-row .btn{margin-top:0;padding:8px 14px;font-size:.9rem}
-  /* Grid view */
-  table.grid{width:100%;table-layout:fixed;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden}
-  .grid th{background:var(--brown);color:var(--cream);padding:8px 4px;font-size:.8rem}
-  .grid td{border:1px solid var(--gold-soft);vertical-align:top;height:86px;width:14.28%;
-    padding:4px;font-size:.75rem;cursor:pointer}
+  .event-card .btn{padding:10px 18px;font-size:.9rem}
+  /* ===== Month grid ===== */
+  .grid-card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:10px;overflow:hidden}
+  table.grid{width:100%;table-layout:fixed;border-collapse:collapse}
+  .grid th{background:var(--brown-deep);color:var(--cream);padding:9px 4px;font-size:.78rem;
+    letter-spacing:.08em}
+  .grid th:first-child{border-radius:10px 0 0 10px}
+  .grid th:last-child{border-radius:0 10px 10px 0}
+  .grid td{border:1px solid #f0e4c9;vertical-align:top;height:88px;width:14.28%;
+    padding:4px;font-size:.74rem;cursor:pointer}
   .grid td .num{font-weight:700;font-size:.85rem}
   .grid td.today .num{background:var(--gold);border-radius:50%;padding:2px 7px;color:var(--brown-deep)}
   .grid td.other{background:var(--cream);color:#a08a6d;cursor:default}
-  .grid td.selected{outline:3px solid var(--gold-deep);outline-offset:-3px}
-  .grid .ev{display:block;background:var(--gold-soft);border-radius:4px;padding:1px 4px;
+  .grid td.selected{outline:3px solid var(--gold-deep);outline-offset:-3px;border-radius:6px}
+  .grid .ev{display:block;background:var(--gold-soft);border-radius:5px;padding:1px 5px;
     margin-top:2px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
-  #dayPanel{margin-top:12px}
-  /* Fallback + misc */
-  #calFallback iframe{width:100%;height:600px;border:1px solid var(--gold-soft);border-radius:10px}
-  .note{background:var(--gold-soft);border-radius:10px;padding:12px 16px;margin-top:12px;font-weight:600}
-  .add-btns{display:flex;gap:10px;flex-wrap:wrap}
+  #dayPanel{margin-top:14px}
+  #dayPanel h4{background:var(--gold-soft);color:var(--brown-deep);padding:8px 14px;
+    border-radius:10px;margin-bottom:10px;font-size:1rem}
+  #calFallback iframe{width:100%;height:600px;border:none;border-radius:var(--radius);box-shadow:var(--shadow)}
+  /* ===== Utility row ===== */
+  .three-up{display:grid;gap:14px;margin-bottom:8px}
+  @media(min-width:820px){.three-up{grid-template-columns:1fr 1fr 1fr}}
+  .three-up .card{display:flex;flex-direction:column;align-items:flex-start}
+  .three-up .card p{flex:1;font-size:.95rem;margin:8px 0 4px}
+  .note{background:var(--gold-soft);border-radius:12px;padding:12px 16px;margin-top:14px;
+    font-weight:600;font-size:.93rem}
+  .add-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
   .muted{color:#7a6248;font-size:.95rem}
-  footer{text-align:center;padding:36px 16px 28px;color:var(--brown-deep)}
-  footer .eat{color:var(--gold-deep);font-weight:700;margin-top:4px}
   .loading{padding:20px;text-align:center;color:#7a6248}
-  @media(min-width:768px){header h1{font-size:2.4rem}.grid td{height:100px;font-size:.8rem}}
+  /* ===== Footer ===== */
+  footer{background:var(--brown-deep);color:var(--cream);text-align:center;
+    padding:34px 16px;margin-top:52px}
+  footer .eat{color:var(--gold);font-weight:800;margin-top:6px;font-size:1.15rem}
 </style>
 </head>
 <body>
+
+<header class="hero">
+  <img src="/cookout-logo.jpeg" alt="The Cookout logo">
+  <span class="the">The</span>
+  <h1>Cook<span class="accent">out</span></h1>
+  <p class="tagline">If it's making money, bring it to The Cookout.</p>
+  <div class="hero-actions">
+    <a class="btn" href="#events">This Month's Events</a>
+    <a class="btn ghost" href="#replays">Video Replays</a>
+    <a class="btn ghost" href="#subscribe">Add the Calendar</a>
+  </div>
+</header>
+
 <div class="wrap">
 
-  <header>
-    <img src="/cookout-logo.jpeg" alt="The Cookout logo">
-    <h1>The Cookout Calendar</h1>
-    <p>If it's making money, bring it to The Cookout.</p>
-  </header>
-
-  <section id="announcements">
-    <h2>Announcements</h2>
-    <div id="annList" class="loading">Loading announcements...</div>
-  </section>
-
   <section id="events">
+    <span class="kicker">The Calendar</span>
     <h2>This Month's Events</h2>
     <div id="calApp" hidden>
       <div class="cal-controls">
@@ -118,7 +155,7 @@
         </div>
       </div>
       <div id="listView"></div>
-      <div id="gridView" hidden></div>
+      <div id="gridView" hidden class="grid-card"></div>
       <div id="dayPanel"></div>
     </div>
     <div id="calLoading" class="loading">Loading events...</div>
@@ -128,33 +165,45 @@
     </div>
   </section>
 
-  <section id="replays">
-    <h2>Video Replays</h2>
-    <p>Missed a call? The replays are all in one place.</p>
-    <a class="btn" href="https://docs.google.com/spreadsheets/d/1lo7voinjg9op_xahIE1fO2sSunfUR8rbyTwMcSnUInY/edit?usp=sharing" target="_blank" rel="noopener">Watch Replays</a>
+  <section id="announcements">
+    <span class="kicker">Featured</span>
+    <h2>Announcements</h2>
+    <div id="annList" class="ann-grid loading">Loading announcements...</div>
   </section>
 
-  <section id="subscribe">
-    <h2>Add This Calendar</h2>
-    <div class="add-btns">
-      <a class="btn" href="https://calendar.google.com/calendar/u/0?cid=Y19jZTM4ZGJiNjQwNjYzYmQyZjkxZGQ4Mzk5YzA5N2YyZGJjMjUzODdhYWQyZmM0NTRmYzYwMjllMWE0NGU2M2NkQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20">Add to Google Calendar</a>
-      <a class="btn ghost" href="https://calendar.google.com/calendar/ical/c_ce38dbb640663bd2f91dd8399c097f2dbc25387aad2fc454fc6029e1a44e63cd%40group.calendar.google.com/public/basic.ics">iCal / Apple / Outlook</a>
+  <section id="more">
+    <span class="kicker">Stay Plugged In</span>
+    <h2>Replays, Reminders &amp; Your Events</h2>
+    <div class="three-up">
+      <div class="card" id="replays">
+        <h3>Video Replays</h3>
+        <p>Missed a call? The replays are all in one place.</p>
+        <a class="btn small" href="https://docs.google.com/spreadsheets/d/1lo7voinjg9op_xahIE1fO2sSunfUR8rbyTwMcSnUInY/edit?usp=sharing" target="_blank" rel="noopener">Watch Replays</a>
+      </div>
+      <div class="card" id="subscribe">
+        <h3>Add This Calendar</h3>
+        <p>Get every Cookout event on your own calendar.</p>
+        <div class="add-btns">
+          <a class="btn small" href="https://calendar.google.com/calendar/u/0?cid=Y19jZTM4ZGJiNjQwNjYzYmQyZjkxZGQ4Mzk5YzA5N2YyZGJjMjUzODdhYWQyZmM0NTRmYzYwMjllMWE0NGU2M2NkQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20">Google Calendar</a>
+          <a class="btn small ghost" style="color:var(--gold-deep)" href="https://calendar.google.com/calendar/ical/c_ce38dbb640663bd2f91dd8399c097f2dbc25387aad2fc454fc6029e1a44e63cd%40group.calendar.google.com/public/basic.ics">iCal / Apple / Outlook</a>
+        </div>
+      </div>
+      <div class="card" id="submit-event">
+        <h3>Got an Event?</h3>
+        <p>If you want the community at your event, send the details to leadership. We will post it here and add it to the calendar.</p>
+        <a class="btn small" href="mailto:thecrew@thecookout.us?subject=Event%20for%20The%20Cookout%20Calendar">Send Your Event</a>
+      </div>
     </div>
     <p class="note">Every event requires its own Zoom registration. Adding the calendar does not register you. Add it on desktop first.</p>
   </section>
 
-  <section id="submit-event">
-    <h2>Got an Event?</h2>
-    <p>If you want the community at your event, send the details to leadership. We will post it here and add it to the calendar.</p>
-    <a class="btn" href="mailto:thecrew@thecookout.us?subject=Event%20for%20The%20Cookout%20Calendar">Send Your Event</a>
-  </section>
-
-  <footer>
-    <div>The Cookout &copy; <span id="year"></span></div>
-    <div class="eat">Let's eat.</div>
-  </footer>
-
 </div>
+
+<footer>
+  <div>The Cookout &copy; <span id="year"></span></div>
+  <div class="eat">Let's eat.</div>
+</footer>
+
 <script>
 // ================= CONFIG (safe to edit) =================
 const CALENDAR_ID = 'c_ce38dbb640663bd2f91dd8399c097f2dbc25387aad2fc454fc6029e1a44e63cd@group.calendar.google.com';
@@ -174,7 +223,6 @@ const $ = id => document.getElementById(id);
 $('year').textContent = new Date().getFullYear();
 const esc = s => s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
-// Today's date parts in America/New_York, as {y,m,d}
 function nyToday(){
   const p = new Intl.DateTimeFormat('en-CA',{timeZone:TZ,year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
   const [y,m,d] = p.split('-').map(Number); return {y,m,d};
@@ -186,8 +234,8 @@ fetch('/announcements.json',{cache:'no-store'}).then(r=>r.json()).then(items=>{
   const todayStr = `${t.y}-${String(t.m).padStart(2,'0')}-${String(t.d).padStart(2,'0')}`;
   const live = items.filter(a => !a.expires || a.expires >= todayStr)
                     .sort((a,b) => (b.posted||'').localeCompare(a.posted||''));
-  if(!live.length){ $('annList').innerHTML = '<p class="muted">No announcements right now. Check back soon.</p>'; return; }
   $('annList').classList.remove('loading');
+  if(!live.length){ $('annList').innerHTML = '<p class="muted">No announcements right now. Check back soon.</p>'; return; }
   $('annList').innerHTML = live.map(a=>{
     const body = esc(a.body||'')
       .replace(/https?:\/\/[^\s<]+/g, u=>`<a href="${u}" target="_blank" rel="noopener">${u}</a>`)
@@ -213,7 +261,6 @@ function registerLink(ev){
   const m = ((ev.location||'')+' '+(ev.description||'')).match(/https:\/\/[\w.-]*zoom\.us\/[^\s"'<>\\]+/);
   return m ? m[0] : null;
 }
-// Date key (YYYY-MM-DD) and display time for an event start/end, in NY time
 function nyParts(gdate){
   const d = new Date(gdate.dateTime || gdate.date + 'T12:00:00');
   const key = new Intl.DateTimeFormat('en-CA',{timeZone:TZ,year:'numeric',month:'2-digit',day:'2-digit'}).format(d);
@@ -223,10 +270,8 @@ function nyParts(gdate){
 
 async function loadMonth(){
   $('calLoading').hidden = false; $('calApp').hidden = true; selectedDay = null; $('dayPanel').innerHTML = '';
-  const mm = String(viewMonth).padStart(2,'0');
-  const next = viewMonth === 12 ? `${viewYear+1}-01` : `${viewYear}-${String(viewMonth+1).padStart(2,'0')}`;
-  // Fetch a padded window (a day each side, UTC); exact month filtering happens
-  // in render() on the New York date key, so EST/EDT never shifts an event out.
+  // Padded window (a day each side, UTC); exact month filtering happens in render()
+  // on the New York date key, so EST/EDT never shifts an event out.
   const pad = d => new Date(d).toISOString();
   const url = 'https://www.googleapis.com/calendar/v3/calendars/' + encodeURIComponent(CALENDAR_ID) +
     `/events?key=${API_KEY}&singleEvents=true&orderBy=startTime&maxResults=250` +
@@ -255,21 +300,21 @@ function render(items){
   setView(view);
 }
 
-function eventRow(e){
-  const time = e.start ? `${e.start} – ${e.end||''}` : 'All day';
+function eventCard(e, withBadge){
+  const day = new Date(e.dayKey+'T12:00:00');
+  const badge = withBadge ? `<div class="date-badge"><span class="d">${day.getDate()}</span>` +
+    `<span class="m">${day.toLocaleDateString('en-US',{weekday:'short'})} · ${day.toLocaleDateString('en-US',{month:'short'})}</span></div>` : '';
+  const time = e.start ? `${e.start} – ${e.end||''} ET` : 'All day';
   const btn = e.link ? `<a class="btn" href="${esc(e.link)}" target="_blank" rel="noopener">Register</a>` : '';
-  return `<div class="event-row"><span class="time">${time}</span>` +
-    `<span class="title"><span class="tag ${e.cat.cls}">${e.cat.label}</span> ${esc(e.title)}</span>${btn}</div>`;
+  return `<div class="event-card">${badge}<div class="info"><div class="time">${time}</div>` +
+    `<div class="title">${esc(e.title)}</div><span class="tag ${e.cat.cls}">${e.cat.label}</span></div>${btn}</div>`;
 }
 
 function renderList(events){
   if(!events.length){ $('listView').innerHTML = '<p class="muted">No events on the calendar this month.</p>'; return; }
-  const byDay = {};
-  events.forEach(e => (byDay[e.dayKey] = byDay[e.dayKey] || []).push(e));
-  $('listView').innerHTML = Object.keys(byDay).sort().map(k=>{
-    const label = new Date(k+'T12:00:00').toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
-    return `<div class="day-group"><h4>${label}</h4>${byDay[k].map(eventRow).join('')}</div>`;
-  }).join('');
+  $('listView').innerHTML = events
+    .sort((a,b)=> a.dayKey===b.dayKey ? 0 : (a.dayKey<b.dayKey?-1:1))
+    .map(e=>eventCard(e,true)).join('');
 }
 
 function renderGrid(events){
@@ -299,8 +344,8 @@ function renderGrid(events){
       td.classList.add('selected');
       const key = td.dataset.key, dayEvents = byDay[key]||[];
       const label = new Date(key+'T12:00:00').toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
-      $('dayPanel').innerHTML = `<div class="day-group"><h4>${label}</h4>` +
-        (dayEvents.length ? dayEvents.map(eventRow).join('') : '<p class="muted">No events this day.</p>') + '</div>';
+      $('dayPanel').innerHTML = `<h4>${label}</h4>` +
+        (dayEvents.length ? dayEvents.map(e=>eventCard(e,false)).join('') : '<p class="muted">No events this day.</p>');
     };
   });
 }
