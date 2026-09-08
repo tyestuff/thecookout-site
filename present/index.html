@@ -149,7 +149,7 @@ form.addEventListener('submit', async (e)=>{
       return;
     }catch(err){/* fall through to mailto */}
   }
-  const subject = 'Speaker application: ' + (fd.get('Speaker name')||'');
+  const subject = 'Presenter application - ' + (fd.get('Speaker name')||'');
   location.href = `mailto:${TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   document.getElementById('thanks').style.display='block';
   document.getElementById('fbText').value = body;
