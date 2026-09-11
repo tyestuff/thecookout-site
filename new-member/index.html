@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Join The Cookout</title>
+<meta name="description" content="New member application for The Cookout real estate investing community.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/cookout-logo.jpeg">
+<style>
+  :root{
+    --gold:#E9A93C; --gold-deep:#D9912A; --gold-soft:#F3D08A;
+    --brown:#3A2114; --brown-deep:#2A170C; --cream:#FBF3E2;
+    --card:#FFFFFF; --shadow:0 6px 18px rgba(58,33,20,.10); --radius:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--cream);color:var(--brown);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:17px;line-height:1.55}
+  .wrap{max-width:720px;margin:0 auto;padding:0 16px 40px}
+  a{color:var(--gold-deep)}
+  .hero{background:
+    repeating-linear-gradient(90deg, rgba(0,0,0,.22) 0 2px, transparent 2px 110px),
+    linear-gradient(180deg, #33200f 0%, var(--brown-deep) 70%);
+    color:var(--cream);text-align:center;padding:26px 16px 36px}
+  .hero .bar{display:flex;align-items:center;justify-content:space-between;max-width:720px;margin:0 auto 20px}
+  .hero .bar a{color:var(--gold-soft);text-decoration:none;font-weight:700;font-size:.95rem}
+  .hero .bar img{width:48px;height:48px;border-radius:12px}
+  .hero h1{font-size:clamp(1.8rem,6vw,2.6rem);font-weight:800;text-transform:uppercase;letter-spacing:.05em}
+  .hero h1 .accent{color:var(--gold)}
+  .hero p{color:var(--gold-soft);font-weight:600;margin-top:8px;font-size:1rem}
+  form{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);
+    padding:24px;margin-top:28px}
+  fieldset{border:none;margin-bottom:6px}
+  h2{font-size:1.05rem;color:var(--gold-deep);text-transform:uppercase;letter-spacing:.12em;
+    margin:26px 0 2px;padding-top:18px;border-top:2px solid var(--gold-soft)}
+  fieldset > h2:first-child{border-top:none;margin-top:0;padding-top:0}
+  label{display:block;font-weight:700;color:var(--brown-deep);font-size:.92rem;margin:16px 0 6px}
+  label .req{color:var(--gold-deep)}
+  label .hint{font-weight:400;color:#7a6248;font-size:.85rem}
+  input[type=text],input[type=email],input[type=tel],input[type=url],textarea,select{
+    width:100%;border:2px solid var(--gold-soft);border-radius:10px;padding:11px 12px;
+    font:inherit;font-size:.98rem;color:var(--brown);background:#fffdf7}
+  input:focus,textarea:focus,select:focus{outline:none;border-color:var(--gold-deep)}
+  textarea{min-height:90px;resize:vertical}
+  .row{display:grid;gap:12px}
+  @media(min-width:560px){.row.cols-2{grid-template-columns:1fr 1fr}}
+  .checks{display:grid;gap:8px;margin-top:6px}
+  @media(min-width:560px){.checks{grid-template-columns:1fr 1fr}}
+  .checks label,.radio-row label{display:flex;align-items:flex-start;gap:8px;font-weight:600;margin:0;font-size:.92rem}
+  .radio-row{display:flex;gap:16px;flex-wrap:wrap;margin-top:6px}
+  .btn{display:inline-block;background:var(--gold);color:var(--brown-deep);font-weight:700;
+    padding:13px 26px;border-radius:999px;border:none;font-size:1.02rem;cursor:pointer;margin-top:22px}
+  .btn:hover{background:var(--gold-deep)}
+  .note{background:var(--gold-soft);border-radius:12px;padding:12px 14px;margin-top:16px;
+    font-weight:600;font-size:.88rem}
+  #fallback{display:none;margin-top:18px}
+  #fallback textarea{min-height:180px;font-size:.85rem}
+  #fallback .btn{margin-top:10px;padding:10px 20px;font-size:.9rem}
+  #thanks{display:none;margin-top:18px;background:var(--gold-soft);border-radius:12px;
+    padding:16px;font-weight:700;color:var(--brown-deep)}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="bar">
+    <a href="/calendar/">&#8249; Calendar</a>
+    <img src="/cookout-logo.jpeg" alt="The Cookout logo">
+    <a href="/members/">Members</a>
+  </div>
+  <h1>Join <span class="accent">The Cookout</span></h1>
+  <p>New member application. Real answers get you a real seat at the table.</p>
+</header>
+
+<div class="wrap">
+<form id="joinForm">
+  <fieldset>
+    <h2>Who You Are</h2>
+    <label>Full name <span class="req">*</span></label>
+    <input type="text" name="Full name" required>
+    <label>Preferred first name or nickname</label>
+    <input type="text" name="Preferred name">
+    <div class="row cols-2">
+      <div><label>Email <span class="req">*</span></label><input type="email" name="Email" required></div>
+      <div><label>Phone <span class="req">*</span></label><input type="tel" name="Phone" required></div>
+    </div>
+    <div class="row cols-2">
+      <div><label>City <span class="req">*</span></label><input type="text" name="City" required></div>
+      <div><label>State <span class="req">*</span></label><input type="text" name="State" required></div>
+    </div>
+    <label>Who referred you, or how did you find The Cookout? <span class="req">*</span></label>
+    <input type="text" name="Referred by" required>
+
+    <h2>Your Business</h2>
+    <label>Your markets <span class="hint">states, cities, or zip codes where you do REI business</span></label>
+    <input type="text" name="Markets">
+    <label>Real estate specialty <span class="hint">check all that apply</span></label>
+    <div class="checks">
+      <label><input type="checkbox" name="REI specialty" value="Wholesaling"> Wholesaling</label>
+      <label><input type="checkbox" name="REI specialty" value="Fix and flip"> Fix &amp; flip</label>
+      <label><input type="checkbox" name="REI specialty" value="Buy and hold"> Buy &amp; hold / rentals</label>
+      <label><input type="checkbox" name="REI specialty" value="Creative finance / SubTo"> Creative finance / SubTo</label>
+      <label><input type="checkbox" name="REI specialty" value="Co-living"> Co-living</label>
+      <label><input type="checkbox" name="REI specialty" value="Short-term rentals"> Short-term rentals</label>
+      <label><input type="checkbox" name="REI specialty" value="Multifamily / commercial"> Multifamily / commercial</label>
+      <label><input type="checkbox" name="REI specialty" value="New investor"> New investor - still learning</label>
+    </div>
+    <label>Funding specialty <span class="hint">check all that apply</span></label>
+    <div class="checks">
+      <label><input type="checkbox" name="Funding specialty" value="Private money lending"> Private money lending</label>
+      <label><input type="checkbox" name="Funding specialty" value="Gator / EMD"> Gator / EMD</label>
+      <label><input type="checkbox" name="Funding specialty" value="Transactional funding"> Transactional funding</label>
+      <label><input type="checkbox" name="Funding specialty" value="Hard money"> Hard money</label>
+      <label><input type="checkbox" name="Funding specialty" value="Raising capital"> Raising capital</label>
+      <label><input type="checkbox" name="Funding specialty" value="None yet"> None yet</label>
+    </div>
+    <label>Which specialty is your superpower? <span class="req">*</span></label>
+    <input type="text" name="Superpower" required>
+    <label>Professional background <span class="hint">your W-2 or full-time business</span></label>
+    <input type="text" name="Professional background">
+    <label>Years of experience in that area</label>
+    <input type="text" name="Years experience">
+
+    <h2>Verification</h2>
+    <label>Instagram link</label>
+    <input type="url" name="Instagram" placeholder="https://">
+    <label>Facebook link</label>
+    <input type="url" name="Facebook" placeholder="https://">
+    <label>Which community are you a part of? <span class="req">*</span></label>
+    <select name="Community" required>
+      <option value="">Select...</option>
+      <option>SubTo</option>
+      <option>Gator Method</option>
+      <option>Owners Club</option>
+      <option>Top Tier TC</option>
+      <option>Other (explain below)</option>
+    </select>
+    <label>If "Other," explain</label>
+    <input type="text" name="Community other">
+    <label>Proof of membership <span class="req">*</span> <span class="hint">a screenshot of YOUR last post in your community's chat. Attach the image to the email after you hit submit, or paste a Drive link here</span></label>
+    <input type="text" name="Proof link" placeholder="Link, or write 'attached'">
+    <label>Have you completed the Safety Training? <span class="req">*</span></label>
+    <div class="radio-row">
+      <label><input type="radio" name="Safety training" value="Yes" required> Yes</label>
+      <label><input type="radio" name="Safety training" value="In progress"> In progress</label>
+      <label><input type="radio" name="Safety training" value="Not yet"> Not yet</label>
+    </div>
+    <label>If in progress: expected completion date. If done: attach your certificate to the email or paste a link</label>
+    <input type="text" name="Safety detail">
+
+    <h2>Your Seat at the Table</h2>
+    <label>What's your "why" for joining The Cookout? <span class="req">*</span></label>
+    <textarea name="Why" required></textarea>
+    <label>What do you hope to contribute to the community? <span class="req">*</span></label>
+    <textarea name="Contribute" required></textarea>
+    <label>What do you need right now? <span class="hint">deals, money, partners, knowledge - say it plain</span></label>
+    <textarea name="Need"></textarea>
+    <label>Member directory</label>
+    <div class="radio-row">
+      <label><input type="checkbox" name="Directory opt-in" value="Yes" checked> List me on the public member directory at thecookout.us/members once I'm approved <span class="hint">(uncheck to opt out)</span></label>
+    </div>
+
+    <h2>Agreement</h2>
+    <div class="radio-row">
+      <label><input type="checkbox" name="Agreement" value="Agreed" required> I understand The Cookout shares information and connections only. Nothing here is legal, tax, or financial advice. Any deal, JV, or transaction I enter is my own, The Cookout is not a party to it and assumes no liability for it, and I will do my own due diligence. <span class="req">*</span></label>
+    </div>
+  </fieldset>
+  <button class="btn" type="submit">Send Application</button>
+  <p class="note">Submitting opens an email to thecrew@thecookout.us with your answers filled in. <strong>Attach your proof screenshot (and Safety certificate if done) to that email</strong>, then hit send. Leadership reviews every application.</p>
+  <div id="thanks">Got it - your email app should be open. Attach your proof screenshot, hit send, and leadership will take it from there.</div>
+  <div id="fallback">
+    <label>Or copy it and send it your way:</label>
+    <textarea id="fbText" readonly></textarea>
+    <button class="btn" type="button" id="copyBtn">Copy</button>
+  </div>
+</form>
+</div>
+
+<script>
+const TO = 'thecrew@thecookout.us';
+const form = document.getElementById('joinForm');
+form.addEventListener('submit', (e)=>{
+  e.preventDefault();
+  const fd = new FormData(form);
+  let lines = ['NEW MEMBER APPLICATION', '====================='];
+  const seen = {};
+  for(const [k,v] of fd.entries()){
+    if(!String(v).trim()) continue;
+    if(seen[k]){ lines[seen[k]] += ', ' + v; } // merge repeated checkbox fields
+    else { lines.push(`${k}: ${v}`); seen[k] = lines.length - 1; }
+  }
+  if(!fd.get('Directory opt-in')) lines.push('Directory opt-in: No (opted out)');
+  const body = lines.join('\n');
+  const subject = 'New member application - ' + (fd.get('Full name')||'');
+  location.href = `mailto:${TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  document.getElementById('thanks').style.display='block';
+  document.getElementById('fbText').value = body;
+  document.getElementById('fallback').style.display='block';
+});
+document.getElementById('copyBtn').onclick = ()=>{
+  navigator.clipboard.writeText(document.getElementById('fbText').value);
+  document.getElementById('copyBtn').textContent = 'Copied!';
+};
+</script>
+</body>
+</html>
