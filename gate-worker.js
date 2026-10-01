@@ -6,7 +6,7 @@
 // so removing someone from KV locks them out immediately.
 // Deployed from thecookout-site repo (gate-worker.js) via Cloudflare API.
 
-const GATED = /^\/(calendar|calender|members)(\/|$)/;
+const GATED = /^\/(calendar|calender|members)(\/|\.|$)/; // paths AND data files (members.json)
 const COOKIE = "ck_member";
 
 async function hmac(secret, msg) {
