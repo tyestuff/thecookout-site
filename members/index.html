@@ -63,10 +63,9 @@
   .mcard h3{font-size:1.18rem;color:var(--brown-deep)}
   .mcard .loc{color:#7a6248;font-size:.9rem;margin-top:2px}
   .mcard .contact{margin:12px 0 4px;font-size:.93rem}
-  .mcard ul.spec{list-style:none;margin:10px 0 2px}
-  .mcard ul.spec li{font-size:.93rem;margin-bottom:4px;padding-left:16px;position:relative}
-  .mcard ul.spec li::before{content:"";position:absolute;left:2px;top:.5em;width:7px;height:7px;
-    border-radius:50%;background:var(--gold)}
+  .mcard .lanes{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 2px}
+  .mcard .lanes span{display:inline-block;background:var(--gold);color:var(--brown-deep);
+    font-size:.78rem;font-weight:800;padding:5px 13px;border-radius:999px;letter-spacing:.02em}
   .mcard .contact div{margin-bottom:5px;overflow-wrap:anywhere}
   .mcard .details{font-size:.95rem;margin-top:8px;flex:1}
   .muted{color:#7a6248;font-size:.95rem}
@@ -126,7 +125,7 @@ function memberCard(m, isFeatured){
   const role = m.role ? `<span class="role">${esc(m.role)}</span>` : '';
   const loc = m.location ? `<div class="loc">&#128205; ${esc(m.location)}</div>` : '';
   const specs = (m.specialties && m.specialties.length)
-    ? `<ul class="spec">${m.specialties.map(s=>`<li>${esc(s)}</li>`).join('')}</ul>` : '';
+    ? `<div class="lanes">${m.specialties.map(s=>`<span>${esc(s)}</span>`).join('')}</div>` : '';
   let contact = '';
   if(m.phone)   contact += `<div>&#9742; <a href="tel:${esc(m.phone).replace(/[^+\d]/g,'')}">${esc(m.phone)}</a></div>`;
   if(m.email)   contact += `<div>&#9993; <a href="mailto:${esc(m.email)}">${esc(m.email)}</a></div>`;
@@ -135,7 +134,7 @@ function memberCard(m, isFeatured){
     contact += `<div>&#127760; <a href="${esc(m.website)}" target="_blank" rel="noopener">${label} &#8599;</a></div>`;
   }
   const details = m.details ? `<div class="details">${esc(m.details).replace(/\n/g,'<br>')}</div>` : '';
-  return `<div class="mcard${isFeatured?' featured':''}">${badge}${role}<h3>${esc(m.name||'')}</h3>${loc}${specs}` +
+  return `<div class="mcard${isFeatured?' featured':''}">${badge}${role}<h3>${esc(m.name||'')}</h3>${specs}${loc}` +
     (contact?`<div class="contact">${contact}</div>`:'') + details + '</div>';
 }
 
