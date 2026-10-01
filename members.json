@@ -4,31 +4,38 @@
     "name": "[Member Name]",
     "role": "Real Estate Investor",
     "location": "[City, ST]",
-    "phone": "[PHONE]",
-    "email": "[EMAIL]",
-    "website": "[URL]",
-    "details": "[What they do, what they have, or what they need - in their own words. Example: Buy-and-hold investor focused on co-living SFRs. Has private capital, looking for off-market deals in the DMV.]"
+    "details": "[Featured member placeholder - replace when featured members are chosen.]"
   },
   {
     "featured": true,
     "name": "[Member Name]",
     "role": "Business Owner",
-    "location": "[City, ST]",
-    "phone": "[PHONE]",
-    "details": "[Replace me. Every field except name is optional - a card only shows what the member wants to share.]"
+    "details": "[Featured member placeholder - replace when featured members are chosen.]"
   },
-  {
-    "featured": false,
-    "name": "[Member Name]",
-    "role": "Service Provider",
-    "phone": "[PHONE]",
-    "email": "[EMAIL]",
-    "details": "[Replace me or delete me.]"
-  },
-  {
-    "featured": false,
-    "name": "[Member Name]",
-    "role": "Lender",
-    "details": "[Replace me or delete me.]"
-  }
+  { "name": "Adrian Gillis", "specialties": ["Lead generation", "RV park underwriting"], "website": "https://blinq.me/J6CaPTzipgpNZjI9Xhxr" },
+  { "name": "Angela Payne", "specialties": ["Capital lane"] },
+  { "name": "Ashlee Croft", "location": "Phoenix, AZ", "specialties": ["Builder lane", "RV parks"], "website": "https://blinq.me/G1ZquYzXOiF3r2K02QB2?bs=icl" },
+  { "name": "Brian Marriott", "specialties": ["Capital lane"] },
+  { "name": "Carol Grizzle", "specialties": ["Private money lending", "Elite Gator"], "website": "https://blinq.me/vSIHbYTUqGea?bs=icl" },
+  { "name": "Dana Jones", "specialties": ["Behavioral health", "Mortgage company"], "website": "https://blinq.me/6Dr1pjmCxwUcdxOlfCHD" },
+  { "name": "Daniel Wise", "specialties": ["Deal acquisitions", "Lead generation"], "website": "https://docs.google.com/document/d/1cGOlvxMZ36v6wFS5VCYCxCizJ75O8JhHRC-00gaSGTI/edit?usp=drivesdk" },
+  { "name": "Eddy Charger", "specialties": ["RV parks", "Mobile home parks"] },
+  { "name": "Eric Yanou", "location": "St. Louis, MO", "specialties": ["Project management", "REI marketing"], "email": "eric@xtsusa.com" },
+  { "name": "Erika Jones", "specialties": ["Co-living rentals", "Private money"] },
+  { "name": "Evevon Simms", "specialties": ["Builder lane"] },
+  { "name": "Ja'el Thomas", "specialties": ["Creative finance", "Private capital"] },
+  { "name": "Jaison Shell", "specialties": ["Community connector"] },
+  { "name": "Jamease Kowalczyk", "specialties": ["Private money lending"], "website": "https://blinq.me/sRMpkbyYixiZ" },
+  { "name": "Jamie Davis", "specialties": ["Healthcare businesses", "Builder lane"] },
+  { "name": "Kareem Hinds", "specialties": ["Deal flow"] },
+  { "name": "Keya Veney", "specialties": ["Deal flow"] },
+  { "name": "Manny Charles", "specialties": ["Deal flow"] },
+  { "name": "Mustafa Ellis", "specialties": ["Sober living", "Veteran services"], "website": "https://semesters.creativecampuscommunity.com/signup/" },
+  { "name": "Nicole Perry", "location": "Cherry Hill, NJ", "specialties": ["Deal dispositions", "Transaction coordination"], "email": "nicole@pdouglasproperties.com" },
+  { "name": "Paris Morgan", "specialties": ["Builder lane"] },
+  { "name": "Reginald Wilson", "location": "Texas", "specialties": ["Lead generation"] },
+  { "name": "Sheila Williams", "specialties": ["Co-living investing", "Business acquisitions"] },
+  { "name": "Taseeme Douglas", "location": "Cherry Hill, NJ", "specialties": ["Real estate agent", "Deal dispositions"], "email": "td@pdouglasproperties.com" },
+  { "name": "Teresa Harrat", "specialties": ["Capital lane", "Co-living projects"] },
+  { "name": "Theresa Davis Lyon", "specialties": ["Capital lane"] }
 ]

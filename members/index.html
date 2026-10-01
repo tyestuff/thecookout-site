@@ -63,6 +63,10 @@
   .mcard h3{font-size:1.18rem;color:var(--brown-deep)}
   .mcard .loc{color:#7a6248;font-size:.9rem;margin-top:2px}
   .mcard .contact{margin:12px 0 4px;font-size:.93rem}
+  .mcard ul.spec{list-style:none;margin:10px 0 2px}
+  .mcard ul.spec li{font-size:.93rem;margin-bottom:4px;padding-left:16px;position:relative}
+  .mcard ul.spec li::before{content:"";position:absolute;left:2px;top:.5em;width:7px;height:7px;
+    border-radius:50%;background:var(--gold)}
   .mcard .contact div{margin-bottom:5px;overflow-wrap:anywhere}
   .mcard .details{font-size:.95rem;margin-top:8px;flex:1}
   .muted{color:#7a6248;font-size:.95rem}
@@ -121,12 +125,17 @@ function memberCard(m, isFeatured){
   const badge = isFeatured ? '<span class="badge">&#9733; Featured</span>' : '';
   const role = m.role ? `<span class="role">${esc(m.role)}</span>` : '';
   const loc = m.location ? `<div class="loc">&#128205; ${esc(m.location)}</div>` : '';
+  const specs = (m.specialties && m.specialties.length)
+    ? `<ul class="spec">${m.specialties.map(s=>`<li>${esc(s)}</li>`).join('')}</ul>` : '';
   let contact = '';
   if(m.phone)   contact += `<div>&#9742; <a href="tel:${esc(m.phone).replace(/[^+\d]/g,'')}">${esc(m.phone)}</a></div>`;
   if(m.email)   contact += `<div>&#9993; <a href="mailto:${esc(m.email)}">${esc(m.email)}</a></div>`;
-  if(m.website) contact += `<div>&#127760; <a href="${esc(m.website)}" target="_blank" rel="noopener">${esc(m.website)}</a></div>`;
+  if(m.website){
+    const label = m.website.includes('blinq.me') ? 'Blinq card' : 'Member link';
+    contact += `<div>&#127760; <a href="${esc(m.website)}" target="_blank" rel="noopener">${label} &#8599;</a></div>`;
+  }
   const details = m.details ? `<div class="details">${esc(m.details).replace(/\n/g,'<br>')}</div>` : '';
-  return `<div class="mcard${isFeatured?' featured':''}">${badge}${role}<h3>${esc(m.name||'')}</h3>${loc}` +
+  return `<div class="mcard${isFeatured?' featured':''}">${badge}${role}<h3>${esc(m.name||'')}</h3>${loc}${specs}` +
     (contact?`<div class="contact">${contact}</div>`:'') + details + '</div>';
 }
 
