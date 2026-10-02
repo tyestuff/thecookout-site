@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get on the Directory</title>
+<meta name="description" content="Get your member card on The Cookout member directory.">
+<link rel="icon" href="/cookout-logo.jpeg">
+<style>
+  :root{
+    --gold:#E9A93C; --gold-deep:#D9912A; --gold-soft:#F3D08A;
+    --brown:#3A2114; --brown-deep:#2A170C; --cream:#FBF3E2;
+    --card:#FFFFFF; --shadow:0 6px 18px rgba(58,33,20,.10); --radius:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--cream);color:var(--brown);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:17px;line-height:1.55}
+  .wrap{max-width:640px;margin:0 auto;padding:0 16px 40px}
+  a{color:var(--gold-deep)}
+  .hero{background:
+    repeating-linear-gradient(90deg, rgba(0,0,0,.22) 0 2px, transparent 2px 110px),
+    linear-gradient(180deg, #33200f 0%, var(--brown-deep) 70%);
+    color:var(--cream);text-align:center;padding:26px 16px 36px}
+  .hero img{width:64px;height:64px;border-radius:14px}
+  .hero h1{font-size:clamp(1.7rem,6vw,2.4rem);font-weight:800;text-transform:uppercase;
+    letter-spacing:.05em;margin-top:10px}
+  .hero h1 .accent{color:var(--gold)}
+  .hero p{color:var(--gold-soft);font-weight:600;margin-top:8px;font-size:1rem}
+  form{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);
+    padding:24px;margin-top:28px}
+  label{display:block;font-weight:700;color:var(--brown-deep);font-size:.92rem;margin:16px 0 6px}
+  label .req{color:var(--gold-deep)}
+  label .hint{font-weight:400;color:#7a6248;font-size:.85rem}
+  input[type=text],input[type=email],input[type=tel],input[type=url]{
+    width:100%;border:2px solid var(--gold-soft);border-radius:10px;padding:11px 12px;
+    font:inherit;font-size:.98rem;color:var(--brown);background:#fffdf7}
+  input:focus{outline:none;border-color:var(--gold-deep)}
+  .row{display:grid;gap:12px}
+  @media(min-width:520px){.row.cols-2{grid-template-columns:1fr 1fr}}
+  .checks{display:grid;gap:8px;margin-top:6px;grid-template-columns:1fr 1fr}
+  .checks label{display:flex;align-items:center;gap:8px;font-weight:600;margin:0;font-size:.92rem}
+  .btn{display:inline-block;background:var(--gold);color:var(--brown-deep);font-weight:700;
+    padding:13px 26px;border-radius:999px;border:none;font-size:1.02rem;cursor:pointer;margin-top:22px}
+  .btn:hover{background:var(--gold-deep)}
+  .note{background:var(--gold-soft);border-radius:12px;padding:12px 14px;margin-top:16px;
+    font-weight:600;font-size:.88rem}
+  #fallback{display:none;margin-top:18px}
+  #fallback textarea{width:100%;min-height:160px;font-size:.85rem;border:2px solid var(--gold-soft);
+    border-radius:10px;padding:10px;font-family:inherit}
+  #fallback .btn{margin-top:10px;padding:10px 20px;font-size:.9rem}
+  #thanks{display:none;margin-top:18px;background:var(--gold-soft);border-radius:12px;
+    padding:16px;font-weight:700;color:var(--brown-deep)}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <img src="/cookout-logo.jpeg" alt="The Cookout logo">
+  <h1>Get on the <span class="accent">Directory</span></h1>
+  <p>Two minutes. Your card goes up on the member directory so the community knows what you bring.</p>
+</header>
+
+<div class="wrap">
+<form id="dirForm">
+  <label>Full name <span class="req">*</span></label>
+  <input type="text" name="Full name" required>
+  <div class="row cols-2">
+    <div><label>City</label><input type="text" name="City"></div>
+    <div><label>State</label><input type="text" name="State"></div>
+  </div>
+  <label>Your lanes <span class="req">*</span> <span class="hint">check all that apply</span></label>
+  <div class="checks">
+    <label><input type="checkbox" name="Lanes" value="Capital"> Capital</label>
+    <label><input type="checkbox" name="Lanes" value="Deal Flow"> Deal Flow</label>
+    <label><input type="checkbox" name="Lanes" value="Builder"> Builder</label>
+    <label><input type="checkbox" name="Lanes" value="Connector"> Connector</label>
+    <label><input type="checkbox" name="Lanes" value="PML"> PML</label>
+    <label><input type="checkbox" name="Lanes" value="Wholesale"> Wholesale</label>
+    <label><input type="checkbox" name="Lanes" value="Lead Gen"> Lead Gen</label>
+    <label><input type="checkbox" name="Lanes" value="Dispositions"> Dispositions</label>
+    <label><input type="checkbox" name="Lanes" value="Co-Living"> Co-Living</label>
+    <label><input type="checkbox" name="Lanes" value="Sober Living"> Sober Living</label>
+  </div>
+  <label>Other lane or specialty <span class="hint">in a few words, e.g. "RV park underwriting"</span></label>
+  <input type="text" name="Other specialty">
+  <label>Blinq card or link <span class="hint">the card link you want on your tile</span></label>
+  <input type="url" name="Card link" placeholder="https://">
+  <label>Email <span class="req">*</span> <span class="hint">shown on your tile if you have no card link</span></label>
+  <input type="email" name="Email" required>
+  <label>Phone <span class="hint">for leadership records only - never shown on the directory</span></label>
+  <input type="tel" name="Phone">
+  <button class="btn" type="submit">Put Me On The Directory</button>
+  <p class="note">Submitting opens an email to thecrew@thecookout.us with your info filled in - just hit send. Your card goes up after leadership review. The directory is visible to signed-in members only.</p>
+  <div id="thanks">Got it - your email app should be open. Hit send and your card is on the way.</div>
+  <div id="fallback">
+    <label>Or copy it and send it your way:</label>
+    <textarea id="fbText" readonly></textarea>
+    <button class="btn" type="button" id="copyBtn">Copy</button>
+  </div>
+</form>
+</div>
+
+<script>
+const TO = 'thecrew@thecookout.us';
+const form = document.getElementById('dirForm');
+form.addEventListener('submit', (e)=>{
+  e.preventDefault();
+  const fd = new FormData(form);
+  let lines = ['DIRECTORY CARD REQUEST', '====================='];
+  const seen = {};
+  for(const [k,v] of fd.entries()){
+    if(!String(v).trim()) continue;
+    if(seen[k]){ lines[seen[k]] += ', ' + v; }
+    else { lines.push(`${k}: ${v}`); seen[k] = lines.length - 1; }
+  }
+  const body = lines.join('\n');
+  const subject = 'Directory card - ' + (fd.get('Full name')||'');
+  location.href = `mailto:${TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  document.getElementById('thanks').style.display='block';
+  document.getElementById('fbText').value = body;
+  document.getElementById('fallback').style.display='block';
+});
+document.getElementById('copyBtn').onclick = ()=>{
+  navigator.clipboard.writeText(document.getElementById('fbText').value);
+  document.getElementById('copyBtn').textContent = 'Copied!';
+};
+</script>
+</body>
+</html>
